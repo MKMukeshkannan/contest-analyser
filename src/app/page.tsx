@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="font-mono min-h-screen w-full bg-sky-50 flex font-bold p-10 flex-col">
-      <h1 className="text-4xl font-mono">ANALYSIS</h1>
+    <main className="font-mono min-h-screen w-full bg-sky-50 flex font-bold p-10 flex-col select-none">
+      <h1 onContextMenu={() => console.log("lkjd")} className="text-4xl w-fit font-mono cursor-pointer">ANALYSIS</h1>
 
       <div className="flex flex-col text-9xl pt-10 w-fit" >
         <Link className="py-2 hover:bg-black hover:text-white" href="/leetcode">LEETCODE</Link>

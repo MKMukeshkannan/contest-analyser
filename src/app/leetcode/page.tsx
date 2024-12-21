@@ -1,8 +1,8 @@
 "use client";
 
-import { csvToArr } from "@/utils/utils";
+import { csvToArr } from "@/lib/utils";
 import { useState } from "react";
-import { set, z } from "zod";
+import { z } from "zod";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
 
@@ -25,16 +25,18 @@ export default function Leetcode() {
         setErr("not a leetcode CSV")
       };
     };
-    fileReader.readAsText(file);
+    if (file) fileReader.readAsText(file);
   };
 
   const {total_solved, hard_solved, top, contest_rating}  = get_aggregates(data);
 
   return (
     <main className="font-mono min-h-screen w-full bg-sky-50 flex font-bold p-10 flex-col">
+      <h1 onContextMenu={() => console.log("lkjd")} className="text-4xl w-fit font-mono cursor-pointer">ANALYSIS</h1>
       <input
         type="file"
         accept=".csv"
+        className="pt-10"
         onChange={(e) => e.target.files && handleFileChosen(e.target.files[0])}
       />
 
