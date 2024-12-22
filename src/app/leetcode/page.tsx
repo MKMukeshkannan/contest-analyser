@@ -1,6 +1,6 @@
 "use client";
 
-import { csvToArr } from "@/lib/utils";
+import { cn, csvToArr } from "@/lib/utils";
 import { useState } from "react";
 import { z } from "zod";
 
@@ -10,10 +10,17 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "
 const DataValidator = z.array(z.object({ Name: z.string(), Department: z.string(), Total: z.string(), Hard: z.string(), "Top\r": z.string(), ContestRating: z.string() }));
 type TData = z.infer<typeof DataValidator>
 
+interface TNameList {
+  Name: string;
+  Value: string;
+}
+
 export default function Leetcode() {
   let fileReader: FileReader;
   const [data, setData] = useState<TData>([]);
   const [err, setErr] = useState<String>("SELECT A CSV")
+
+  const [nameList, setNameList] = useState<TNameList[]>([]);
 
   const handleFileChosen = (file: File) => {
     fileReader = new FileReader();
@@ -32,7 +39,10 @@ export default function Leetcode() {
 
   return (
     <main className="font-mono min-h-screen w-full bg-sky-50 flex font-bold p-10 flex-col">
-      <h1 onContextMenu={() => console.log("lkjd")} className="text-4xl w-fit font-mono cursor-pointer">ANALYSIS</h1>
+      <aside className={cn("w-full max-w-xl h-screen absolute top-0 right-0 border bg-white shadow-xl z-[999]", nameList.length === 0 && "-right-[2000px]")}>
+        {JSON.stringify(nameList)}
+      </aside>
+      <h1 className="text-4xl w-fit font-mono cursor-pointer">ANALYSIS</h1>
       <input
         type="file"
         accept=".csv"
@@ -65,17 +75,17 @@ export default function Leetcode() {
         {total_solved.map((val,i) => 
           <TableRow key={i}>
             <TableCell className="font-medium">{val.department}</TableCell>
-            <TableCell>{val["0-100"]}</TableCell>
-            <TableCell>{val["101-200"]}</TableCell>
-            <TableCell>{val["201-300"]}</TableCell>
-            <TableCell>{val["301-400"]}</TableCell>
-            <TableCell>{val["401-500"]}</TableCell>
-            <TableCell>{val["501-600"]}</TableCell>
-            <TableCell>{val["601-700"]}</TableCell>
-            <TableCell>{val["701-800"]}</TableCell>
-            <TableCell>{val["801-900"]}</TableCell>
-            <TableCell>{val["901-1000"]}</TableCell>
-            <TableCell>{val["1001+"]}</TableCell>
+            <TableCell><button onClick={() => setNameList(val.data['0-100'])}>{val.data['0-100'].length}</button></TableCell>
+            <TableCell>{val.data["101-200"].length}</TableCell>
+            <TableCell>{val.data["201-300"].length}</TableCell>
+            <TableCell>{val.data["301-400"].length}</TableCell>
+            <TableCell>{val.data["401-500"].length}</TableCell>
+            <TableCell>{val.data["501-600"].length}</TableCell>
+            <TableCell>{val.data["601-700"].length}</TableCell>
+            <TableCell>{val.data["701-800"].length}</TableCell>
+            <TableCell>{val.data["801-900"].length}</TableCell>
+            <TableCell>{val.data["901-1000"].length}</TableCell>
+            <TableCell>{val.data["1001+"].length}</TableCell>
           </TableRow>
         )}
         </TableBody>
@@ -104,17 +114,17 @@ export default function Leetcode() {
         {hard_solved.map((val,i) => 
           <TableRow key={i}>
             <TableCell className="font-medium">{val.department}</TableCell>
-            <TableCell>{val["0-100"]}</TableCell>
-            <TableCell>{val["101-200"]}</TableCell>
-            <TableCell>{val["201-300"]}</TableCell>
-            <TableCell>{val["301-400"]}</TableCell>
-            <TableCell>{val["401-500"]}</TableCell>
-            <TableCell>{val["501-600"]}</TableCell>
-            <TableCell>{val["601-700"]}</TableCell>
-            <TableCell>{val["701-800"]}</TableCell>
-            <TableCell>{val["801-900"]}</TableCell>
-            <TableCell>{val["901-1000"]}</TableCell>
-            <TableCell>{val["1001+"]}</TableCell>
+            <TableCell>{val.data["0-100"].length}</TableCell>
+            <TableCell>{val.data["101-200"].length}</TableCell>
+            <TableCell>{val.data["201-300"].length}</TableCell>
+            <TableCell>{val.data["301-400"].length}</TableCell>
+            <TableCell>{val.data["401-500"].length}</TableCell>
+            <TableCell>{val.data["501-600"].length}</TableCell>
+            <TableCell>{val.data["601-700"].length}</TableCell>
+            <TableCell>{val.data["701-800"].length}</TableCell>
+            <TableCell>{val.data["801-900"].length}</TableCell>
+            <TableCell>{val.data["901-1000"].length}</TableCell>
+            <TableCell>{val.data["1001+"].length}</TableCell>
           </TableRow>
         )}
         </TableBody>
@@ -140,14 +150,14 @@ export default function Leetcode() {
         {contest_rating.map((val,i) => 
           <TableRow key={i}>
             <TableCell className="font-medium">{val.department}</TableCell>
-            <TableCell>{val["0-1000"]}</TableCell>
-            <TableCell>{val["1000-1500"]}</TableCell>
-            <TableCell>{val["1500-1600"]}</TableCell>
-            <TableCell>{val["1600-1700"]}</TableCell>
-            <TableCell>{val["1700-1800"]}</TableCell>
-            <TableCell>{val["1800-1850"]}</TableCell>
-            <TableCell>{val["1850-2000"]}</TableCell>
-            <TableCell>{val["2000+"]}</TableCell>
+            <TableCell>{val.data["0-1000"].length}</TableCell>
+            <TableCell>{val.data["1000-1500"].length}</TableCell>
+            <TableCell>{val.data["1500-1600"].length}</TableCell>
+            <TableCell>{val.data["1600-1700"].length}</TableCell>
+            <TableCell>{val.data["1700-1800"].length}</TableCell>
+            <TableCell>{val.data["1800-1850"].length}</TableCell>
+            <TableCell>{val.data["1850-2000"].length}</TableCell>
+            <TableCell>{val.data["2000+"].length}</TableCell>
           </TableRow>
         )}
         </TableBody>
@@ -176,17 +186,17 @@ export default function Leetcode() {
         {top.map((val,i) => 
           <TableRow key={i}>
             <TableCell className="font-medium">{val.department}</TableCell>
-            <TableCell>{val["0-10"]}</TableCell>
-            <TableCell>{val["10-20"]}</TableCell>
-            <TableCell>{val["20-30"]}</TableCell>
-            <TableCell>{val["30-40"]}</TableCell>
-            <TableCell>{val["40-50"]}</TableCell>
-            <TableCell>{val["50-60"]}</TableCell>
-            <TableCell>{val["60-70"]}</TableCell>
-            <TableCell>{val["70-80"]}</TableCell>
-            <TableCell>{val["80-90"]}</TableCell>
-            <TableCell>{val["90-100"]}</TableCell>
-            <TableCell>{val["100"]}</TableCell>
+            <TableCell>{val.data["0-10"].length}</TableCell>
+            <TableCell>{val.data["10-20"].length}</TableCell>
+            <TableCell>{val.data["20-30"].length}</TableCell>
+            <TableCell>{val.data["30-40"].length}</TableCell>
+            <TableCell>{val.data["40-50"].length}</TableCell>
+            <TableCell>{val.data["50-60"].length}</TableCell>
+            <TableCell>{val.data["60-70"].length}</TableCell>
+            <TableCell>{val.data["70-80"].length}</TableCell>
+            <TableCell>{val.data["80-90"].length}</TableCell>
+            <TableCell>{val.data["90-100"].length}</TableCell>
+            <TableCell>{val.data["100"].length}</TableCell>
           </TableRow>
         )}
         </TableBody>
@@ -200,56 +210,19 @@ export default function Leetcode() {
 function get_aggregates(data: TData) {
   const hard_solved: { 
     department: string, 
-    '0-100': number, 
-    '101-200': number, 
-    '201-300': number, 
-    '301-400': number, 
-    '401-500': number, 
-    '501-600': number, 
-    '601-700': number, 
-    '701-800': number, 
-    '801-900': number, 
-    '901-1000': number,
-    '1001+': number,
+    data: { [key: string]: TNameList[]; } 
   }[] = [];
   const total_solved: { 
     department: string,
-    '0-100': number, 
-    '101-200': number, 
-    '201-300': number, 
-    '301-400': number, 
-    '401-500': number, 
-    '501-600': number, 
-    '601-700': number, 
-    '701-800': number, 
-    '801-900': number, 
-    '901-1000': number,
-    '1001+': number,
+    data: { [key: string]: TNameList[]; } 
   }[] = [];
   const contest_rating: {
     department: string,
-    '0-1000': number,
-    '1000-1500': number,
-    '1500-1600': number,
-    '1600-1700': number,
-    '1700-1800': number,
-    '1800-1850': number,
-    '1850-2000': number,
-    '2000+': number,
+    data: { [key: string]: TNameList[]; } 
   }[] = []
   const top: {
     department: string,
-    '0-10': number,
-    '10-20': number,
-    '20-30': number,
-    '30-40': number,
-    '40-50': number,
-    '50-60': number,
-    '60-70': number,
-    '70-80': number,
-    '80-90': number,
-    '90-100': number,
-    '100': number,
+    data: { [key: string]: TNameList[]; } 
   }[] = [];
 
 
@@ -268,105 +241,81 @@ function get_aggregates(data: TData) {
     departmentGroups[Department].push({ Name: item.Name, Total: total, Hard: hard, ContestRating: contest_rating, Top: top });
   }
 
+
   for (const [department, people] of Object.entries(departmentGroups)) {
-    const department_hard = {
+    let department_hard: { department: string; data: {[key: string]: TNameList[];} } = {
       department,
-      '0-100': 0,
-      '101-200': 0,
-      '201-300': 0, 
-      '301-400': 0, 
-      '401-500': 0, 
-      '501-600': 0, 
-      '601-700': 0, 
-      '701-800': 0, 
-      '801-900': 0, 
-      '901-1000': 0, 
-      '1001+': 0, 
+      data: {
+      '0-100': [], '101-200': [], '201-300': [], 
+      '301-400': [], '401-500': [], '501-600': [], '601-700': [], 
+      '701-800': [], '801-900': [], '901-1000': [], '1001+': [] }
     };
-    const department_total = {
+    const department_total: { department: string; data: {[key: string]: TNameList[];} } = {
       department,
-      '0-100': 0,
-      '101-200': 0,
-      '201-300': 0, 
-      '301-400': 0, 
-      '401-500': 0, 
-      '501-600': 0, 
-      '601-700': 0, 
-      '701-800': 0, 
-      '801-900': 0, 
-      '901-1000': 0, 
-      '1001+': 0, 
+      data: {
+      '0-100': [], '101-200': [], '201-300': [], '301-400': [], 
+      '401-500': [], '501-600': [], '601-700': [], '701-800': [], 
+      '801-900': [], '901-1000': [], '1001+': [] }
     };
-    const department_top = { 
+    const department_top: { department: string; data: {[key: string]: TNameList[];} } = { 
       department,
-      '0-10': 0,
-      '10-20': 0,
-      '20-30': 0,
-      '30-40': 0,
-      '40-50': 0,
-      '50-60': 0,
-      '60-70': 0,
-      '70-80': 0,
-      '80-90': 0,
-      '90-100': 0,
-      '100': 0,
+      data: {
+      '0-10': [], '10-20': [], '20-30': [], '30-40': [],
+      '40-50': [], '50-60': [], '60-70': [], '70-80': [],
+      '80-90': [], '90-100': [], '100': [] }
     };
-    const department_contest_rating = {
+    const department_contest_rating: { department: string; data: {[key: string]: TNameList[];} } = {
       department,
-      '0-1000': 0,
-      '1000-1500': 0,
-      '1500-1600': 0,
-      '1600-1700': 0,
-      '1700-1800': 0,
-      '1800-1850': 0,
-      '1850-2000': 0,
-      '2000+': 0,
+      data: {
+      '0-1000': [], '1000-1500': [], '1500-1600': [], '1600-1700': [],
+      '1700-1800': [], '1800-1850': [], '1850-2000': [],
+      '2000+': []}
     };
 
     for (const person of people) {
-      if (person.Total <= 100) department_total['0-100'] += 1;
-      else if (person.Total <= 200) department_total['101-200'] += 1;
-      else if (person.Total <= 300) department_total['201-300'] += 1;
-      else if (person.Total <= 400) department_total['301-400'] += 1;
-      else if (person.Total <= 500) department_total['401-500'] += 1;
-      else if (person.Total <= 600) department_total['501-600'] += 1;
-      else if (person.Total <= 700) department_total['601-700'] += 1;
-      else if (person.Total <= 800) department_total['701-800'] += 1;
-      else if (person.Total <= 900) department_total['801-900'] += 1;
-      else if (person.Total <= 1000) department_total['901-1000'] += 1;
-      else department_total['1001+'] += 1;
+      if (person.Total <= 100) department_total.data['0-100'].push({ "Name": person.Name, "Value": person.Total.toString() });
+      else if (person.Total <= 200) department_total.data['101-200'].push({ "Name": person.Name, "Value": person.Total.toString() });
+      else if (person.Total <= 300) department_total.data['201-300'].push({ "Name": person.Name, "Value": person.Total.toString() });
+      else if (person.Total <= 400) department_total.data['301-400'].push({ "Name": person.Name, "Value": person.Total.toString() });
+      else if (person.Total <= 500) department_total.data['401-500'].push({ "Name": person.Name, "Value": person.Total.toString() });
+      else if (person.Total <= 600) department_total.data['501-600'].push({ "Name": person.Name, "Value": person.Total.toString() });
+      else if (person.Total <= 700) department_total.data['601-700'].push({ "Name": person.Name, "Value": person.Total.toString() });
+      else if (person.Total <= 800) department_total.data['701-800'].push({ "Name": person.Name, "Value": person.Total.toString() });
+      else if (person.Total <= 900) department_total.data['801-900'].push({ "Name": person.Name, "Value": person.Total.toString() });
+      else if (person.Total <= 1000) department_total.data['901-1000'].push({ "Name": person.Name, "Value": person.Total.toString() });
+      else department_total.data['1001+'].push({ "Name": person.Name, "Value": person.Total.toString() });
 
-      if (person.Hard <= 100) department_hard['0-100'] += 1;
-      else if (person.Hard <= 200) department_hard['101-200'] += 1;
-      else if (person.Hard <= 300) department_hard['201-300'] += 1;
-      else if (person.Hard <= 400) department_hard['301-400'] += 1;
-      else if (person.Hard <= 500) department_hard['401-500'] += 1;
-      else if (person.Hard <= 600) department_hard['501-600'] += 1;
-      else if (person.Hard <= 700) department_hard['601-700'] += 1;
-      else if (person.Hard <= 800) department_hard['701-800'] += 1;
-      else if (person.Hard <= 900) department_hard['801-900'] += 1;
-      else if (person.Hard <= 1000) department_hard['901-1000'] += 1;
-      else department_hard['1001+'] += 1;
+      if (person.Hard <= 100) department_hard.data['0-100']
+      else if (person.Hard <= 200) department_hard.data['101-200'].push({ Name: person.Name, "Value": person.Hard.toString() });
+      else if (person.Hard <= 300) department_hard.data['201-300'].push({ Name: person.Name, "Value": person.Hard.toString() });
+      else if (person.Hard <= 400) department_hard.data['301-400'].push({ Name: person.Name, "Value": person.Hard.toString() });
+      else if (person.Hard <= 500) department_hard.data['401-500'].push({ Name: person.Name, "Value": person.Hard.toString() });
+      else if (person.Hard <= 600) department_hard.data['501-600'].push({ Name: person.Name, "Value": person.Hard.toString() });
+      else if (person.Hard <= 700) department_hard.data['601-700'].push({ Name: person.Name, "Value": person.Hard.toString() });
+      else if (person.Hard <= 800) department_hard.data['701-800'].push({ Name: person.Name, "Value": person.Hard.toString() });
+      else if (person.Hard <= 900) department_hard.data['801-900'].push({ Name: person.Name, "Value": person.Hard.toString() });
+      else if (person.Hard <= 1000) department_hard.data['901-1000'].push({ Name: person.Name, "Value": person.Hard.toString() });
+      else department_hard.data['1001+'].push({ Name: person.Name, "Value": person.Hard.toString() });
 
-      if (person.ContestRating <= 1000) department_contest_rating['0-1000'] += 1;
-      else if (person.ContestRating <= 1500) department_contest_rating['1000-1500'] += 1;
-      else if (person.ContestRating <= 1600) department_contest_rating['1500-1600'] += 1;
-      else if (person.ContestRating <= 1700) department_contest_rating['1600-1700'] += 1;
-      else if (person.ContestRating <= 1800) department_contest_rating['1700-1800'] += 1;
-      else if (person.ContestRating <= 1850) department_contest_rating['1800-1850'] += 1;
-      else if (person.ContestRating <= 2000) department_contest_rating['1850-2000'] += 1;
-      else department_contest_rating['2000+'] += 1;
+      if (person.ContestRating <= 1000) department_contest_rating.data['0-1000'].push({Name: person.Name, "Value": person.ContestRating.toString() })
+      else if (person.ContestRating <= 1500) department_contest_rating.data['1000-1500'].push({Name: person.Name, "Value": person.ContestRating.toString() })
+      else if (person.ContestRating <= 1600) department_contest_rating.data['1500-1600'].push({Name: person.Name, "Value": person.ContestRating.toString() })
+      else if (person.ContestRating <= 1700) department_contest_rating.data['1600-1700'].push({Name: person.Name, "Value": person.ContestRating.toString() })
+      else if (person.ContestRating <= 1800) department_contest_rating.data['1700-1800'].push({Name: person.Name, "Value": person.ContestRating.toString() })
+      else if (person.ContestRating <= 1850) department_contest_rating.data['1800-1850'].push({Name: person.Name, "Value": person.ContestRating.toString() })
+      else if (person.ContestRating <= 2000) department_contest_rating.data['1850-2000'].push({Name: person.Name, "Value": person.ContestRating.toString() })
+      else department_contest_rating.data['2000+'].push({Name: person.Name, "Value": person.ContestRating.toString() })
 
-      if (person.Top <= 10) department_top['0-10'] += 1;
-      else if (person.Top <= 20) department_top['10-20'] += 1;
-      else if (person.Top <= 30) department_top['20-30'] += 1;
-      else if (person.Top <= 40) department_top['30-40'] += 1;
-      else if (person.Top <= 50) department_top['40-50'] += 1;
-      else if (person.Top <= 60) department_top['50-60'] += 1;
-      else if (person.Top <= 70) department_top['60-70'] += 1;
-      else if (person.Top <= 80) department_top['70-80'] += 1;
-      else if (person.Top <= 90) department_top['80-90'] += 1;
-      else department_top['100'] += 1;
+      if (person.Top <= 10) department_top.data['0-10'].push({Name: person.Name, "Value": person.Top.toString() })
+      else if (person.Top <= 20) department_top.data['10-20'].push({Name: person.Name, "Value": person.Top.toString() })
+      else if (person.Top <= 30) department_top.data['20-30'].push({Name: person.Name, "Value": person.Top.toString() })
+      else if (person.Top <= 40) department_top.data['30-40'].push({Name: person.Name, "Value": person.Top.toString() })
+      else if (person.Top <= 50) department_top.data['40-50'].push({Name: person.Name, "Value": person.Top.toString() })
+      else if (person.Top <= 60) department_top.data['50-60'].push({Name: person.Name, "Value": person.Top.toString() })
+      else if (person.Top <= 70) department_top.data['60-70'].push({Name: person.Name, "Value": person.Top.toString() })
+      else if (person.Top <= 80) department_top.data['70-80'].push({Name: person.Name, "Value": person.Top.toString() })
+      else if (person.Top <= 90) department_top.data['80-90'].push({Name: person.Name, "Value": person.Top.toString() })
+      else department_top.data['100'].push({Name: person.Name, "Value": person.Top.toString() })
 
     }
 
