@@ -5,8 +5,6 @@ import { useState } from "react";
 import { z } from "zod";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
-
-
 const DataValidator = z.array(z.object({ Name: z.string(), Department: z.string(), 'Problems Solved\r': z.string(), "Star Rating": z.string(),  "Current Rating": z.string() }));
 type TData = z.infer<typeof DataValidator>
 
@@ -67,7 +65,6 @@ export default function Leetcode() {
         {total_solved.map((val,i) => 
           <TableRow key={i}>
             <TableCell className="font-medium">{val.department}</TableCell>
-            <TableCell>{val["0-100"]}</TableCell>
             <TableCell>{val["101-200"]}</TableCell>
             <TableCell>{val["201-300"]}</TableCell>
             <TableCell>{val["301-400"]}</TableCell>
@@ -148,8 +145,7 @@ export default function Leetcode() {
         )}
         </TableBody>
       </Table>
-      </>
-}
+      </> }
     </main>
   );
 }
@@ -195,9 +191,12 @@ function get_aggregates(data: TData) {
   const departmentGroups: { [key: string]: { Name: string, "Problems Solved": number, "Star Rating": number, "Current Rating": number }[] } = {};
   for (const item of data) {
     const { Department, "Current Rating": CurrentRating, "Star Rating": StarRating, "Problems Solved\r": ProblemsSolved } = item;
-    const total = parseInt(ProblemsSolved, 10);
-    const contest_rating = parseInt(CurrentRating, 10);
-    const star_rating = parseInt(StarRating, 10);
+    const cleanedTotal = ProblemsSolved.trim().replace(/[^0-9]/g,'')
+    const cleanedConestRating = CurrentRating.trim().replace(/[^0-9]/g,'')
+    const cleanedStarRating = StarRating.trim().replace(/[^0-9]/g,'')
+    const total = parseInt(cleanedTotal, 10);
+    const contest_rating = parseInt(cleanedConestRating, 10);
+    const star_rating = parseInt(cleanedStarRating, 10);
 
     if (!departmentGroups[Department]) {
       departmentGroups[Department] = [];
@@ -273,6 +272,7 @@ function get_aggregates(data: TData) {
       else if (person["Star Rating"] === 5) department_star['5'] += 1;
       else if (person["Star Rating"] === 6) department_star['6'] += 1;
       else department_star['7'] += 1;
+
     }
 
     total_solved.push(department_total);
