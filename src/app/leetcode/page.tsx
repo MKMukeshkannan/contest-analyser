@@ -7,6 +7,7 @@ import { z } from "zod";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
 import DepartmentSheet from "@/components/DepartmentSheet";
 import { useNameListStore } from "@/lib/store";
+import Link from "next/link";
 
 
 const DataValidator = z.array(z.object({ Name: z.string(), Department: z.string(), Total: z.string(), Hard: z.string(), "Top\r": z.string(), ContestRating: z.string() }));
@@ -16,7 +17,7 @@ interface TNameList { Name: string; Value: string; }
 export default function Leetcode() {
   let fileReader: FileReader;
   const [data, setData] = useState<TData>([]);
-  const [err, setErr] = useState<String>("SELECT A CSV")
+  const [err, setErr] = useState<string>("SELECT A CSV")
 
   const { setNameList } = useNameListStore(s=>s);
 
@@ -27,7 +28,7 @@ export default function Leetcode() {
       try {
       const csvArray = DataValidator.parse(csvToArr(e.target?.result as string, ","));
       setData(csvArray);
-      } catch (e) {
+      } catch {
         setErr("not a leetcode CSV")
       };
     };
@@ -39,7 +40,7 @@ export default function Leetcode() {
   return (
     <main className="font-mono min-h-screen w-full bg-sky-50 flex font-bold p-10 flex-col">
       <DepartmentSheet />
-      <a href="/" className="text-4xl w-fit font-mono cursor-pointer">ANALYSIS</a>
+      <Link href="/" className="text-4xl w-fit font-mono cursor-pointer">ANALYSIS</Link>
       <input
         type="file"
         accept=".csv"
@@ -240,7 +241,7 @@ function get_aggregates(data: TData) {
 
 
   for (const [department, people] of Object.entries(departmentGroups)) {
-    let department_hard: { department: string; data: {[key: string]: TNameList[];} } = {
+    const department_hard: { department: string; data: {[key: string]: TNameList[];} } = {
       department,
       data: {
       '0-100': [], '101-200': [], '201-300': [], 

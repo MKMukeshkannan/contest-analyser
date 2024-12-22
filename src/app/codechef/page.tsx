@@ -5,13 +5,14 @@ import { useState } from "react";
 import { z } from "zod";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
+import Link from "next/link";
 const DataValidator = z.array(z.object({ Name: z.string(), Department: z.string(), 'Problems Solved\r': z.string(), "Star Rating": z.string(),  "Current Rating": z.string() }));
 type TData = z.infer<typeof DataValidator>
 
 export default function Leetcode() {
   let fileReader: FileReader;
   const [data, setData] = useState<TData>([]);
-  const [err, setErr] = useState<String>("SELECT A CSV")
+  const [err, setErr] = useState<string>("SELECT A CSV")
 
   const handleFileChosen = (file: File) => {
     fileReader = new FileReader();
@@ -20,8 +21,7 @@ export default function Leetcode() {
         if (typeof e.target?.result !== 'string') return;
         const csvArray = DataValidator.parse(csvToArr(e.target?.result, ","));
         setData(csvArray);
-      } catch (e) {
-        console.log(e);
+      } catch  {
         setErr("not a leetcode CSV")
       };
     };
@@ -32,7 +32,7 @@ export default function Leetcode() {
 
   return (
     <main className="font-mono min-h-screen w-full bg-sky-50 flex font-bold p-10 flex-col">
-      <a href="/" className="text-4xl w-fit font-mono cursor-pointer">ANALYSIS</a>
+      <Link href="/" className="text-4xl w-fit font-mono cursor-pointer">ANALYSIS</Link>
       <input
         type="file"
         accept=".csv"
