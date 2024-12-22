@@ -1,6 +1,6 @@
 import { ArrowUpDown } from "lucide-react";
-import { useNameListStore } from '@/lib/store'
 import { ColumnDef } from "@tanstack/react-table";
+import DepartmentSheetTrigger from "@/components/DepartmentSheetTrigger";
 
 interface TNameList { Name: string; Value: string; }
 export type TTop = {
@@ -23,8 +23,7 @@ export const TopColumn: ColumnDef<TTop>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["0-10"])}>{row.original.data["0-10"].length}</button>
+      <DepartmentSheetTrigger data={row.original.data["0-10"]} />
     }
   },
   {
@@ -36,8 +35,7 @@ export const TopColumn: ColumnDef<TTop>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["10-20"])}>{row.original.data["10-20"].length}</button>
+      <DepartmentSheetTrigger data={row.original.data["10-20"]} />
     }
   },
   {
@@ -49,8 +47,7 @@ export const TopColumn: ColumnDef<TTop>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["20-30"])}>{row.original.data["20-30"].length}</button>
+      <DepartmentSheetTrigger data={row.original.data["20-30"]} />
     }
   },
   {
@@ -62,8 +59,7 @@ export const TopColumn: ColumnDef<TTop>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["30-40"])}>{row.original.data["30-40"].length}</button>
+      <DepartmentSheetTrigger data={row.original.data["30-40"]} />
     }
   },
   {
@@ -75,8 +71,7 @@ export const TopColumn: ColumnDef<TTop>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["40-50"])}>{row.original.data["40-50"].length}</button>
+      <DepartmentSheetTrigger data={row.original.data["40-50"]} />
     }
   },
   {
@@ -88,8 +83,7 @@ export const TopColumn: ColumnDef<TTop>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["50-60"])}>{row.original.data["50-60"].length}</button>
+      <DepartmentSheetTrigger data={row.original.data["50-60"]} />
     }
   },
   {
@@ -101,8 +95,7 @@ export const TopColumn: ColumnDef<TTop>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["60-70"])}>{row.original.data["60-70"].length}</button>
+      <DepartmentSheetTrigger data={row.original.data["60-70"]} />
     }
   },
   {
@@ -114,8 +107,7 @@ export const TopColumn: ColumnDef<TTop>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["70-80"])}>{row.original.data["70-80"].length}</button>
+      <DepartmentSheetTrigger data={row.original.data["70-80"]} />
     }
   },
   {
@@ -127,8 +119,7 @@ export const TopColumn: ColumnDef<TTop>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["80-90"])}>{row.original.data["80-90"].length}</button>
+      <DepartmentSheetTrigger data={row.original.data["80-90"]} />
     }
   },
   {
@@ -140,8 +131,7 @@ export const TopColumn: ColumnDef<TTop>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["90-100"])}>{row.original.data["90-100"].length}</button>
+      <DepartmentSheetTrigger data={row.original.data["90-100"]} />
     }
   },
   {
@@ -153,8 +143,7 @@ export const TopColumn: ColumnDef<TTop>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["100"])}>{row.original.data["100"].length}</button>
+      <DepartmentSheetTrigger data={row.original.data["100"]} />
     }
   }
 ];

@@ -4,9 +4,7 @@ import { csvToArr } from "@/lib/utils";
 import { useState } from "react";
 import { z } from "zod";
 
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
 import DepartmentSheet from "@/components/DepartmentSheet";
-import { useNameListStore } from "@/lib/store";
 import Link from "next/link";
 import { ContestColumn, TContest } from "./ContestColumn";
 import { DataTable } from "@/components/DataTable";
@@ -14,15 +12,11 @@ import { DataTable } from "@/components/DataTable";
 
 const DataValidator = z.array(z.object({ Name: z.string(), Department: z.string(), Rank: z.string(), 'ProblemsSolved\r': z.string(), Year: z.string() }));
 type TData = z.infer<typeof DataValidator>
-interface TNameList { Name: string; Value: string; }
 
 export default function Leetcode() {
   let fileReader: FileReader;
   const [data, setData] = useState<TData>([]);
   const [err, setErr] = useState<string>("SELECT A CSV")
-
-  const { setNameList } = useNameListStore(s=>s);
-
 
   const handleFileChosen = (file: File) => {
     fileReader = new FileReader();

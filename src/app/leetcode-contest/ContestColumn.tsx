@@ -1,6 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import { useNameListStore } from '@/lib/store'
+import DepartmentSheetTrigger from "@/components/DepartmentSheetTrigger";
 
 interface TNameList { Name: string; Value: string; }
 export type TContest = {
@@ -20,10 +20,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
         abs <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["abs"])}>{row.original.data["abs"].length}</button>
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["abs"]}/>
   },
   {
     accessorKey: `data["0"]`,
@@ -33,10 +30,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
         0 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["0"])}>{row.original.data["0"].length}</button>
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["0"]} />
   },
   {
     accessorKey: `data["1"]`,
@@ -46,10 +40,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
         1 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["1"])}>{row.original.data["1"].length}</button>
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["1"]} />
   },
   {
     accessorKey: `data["2"]`,
@@ -59,10 +50,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
         2 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["2"])}>{row.original.data["2"].length}</button>
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["2"]} />
   },
   {
     accessorKey: `data["3"]`,
@@ -72,10 +60,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
         3 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["3"])}>{row.original.data["3"].length}</button>
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["3"]} />
   },
   {
     accessorKey: `data["4"]`,
@@ -85,10 +70,6 @@ export const ContestColumn: ColumnDef<TContest>[] = [
         4 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      const { setNameList } = useNameListStore(s => s);
-      return <button onClick={() => setNameList(row.original.data["4"])}>{row.original.data["4"].length}</button>
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["4"]} />
   }
-  
 ];

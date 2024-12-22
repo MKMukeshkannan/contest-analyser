@@ -1,6 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import { useNameListStore } from '@/lib/store'
+import DepartmentSheetTrigger from "@/components/DepartmentSheetTrigger";
 
 interface TNameList { Name: string; Value: string; }
 export type TContest = {
@@ -23,8 +23,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
     </button>
   ),
   cell: ({ row }) => {
-    const { setNameList } = useNameListStore(s => s);
-    return <button onClick={() => setNameList(row.original.data["0-1000"])}>{row.original.data["0-1000"].length}</button>
+    <DepartmentSheetTrigger data={row.original.data["0-1000"]} />
   }
 },
 {
@@ -36,8 +35,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
     </button>
   ),
   cell: ({ row }) => {
-    const { setNameList } = useNameListStore(s => s);
-    return <button onClick={() => setNameList(row.original.data["1000-1500"])}>{row.original.data["1000-1500"].length}</button>
+    <DepartmentSheetTrigger data={row.original.data["1000-1500"]} />
   }
 },
 {
@@ -49,8 +47,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
     </button>
   ),
   cell: ({ row }) => {
-    const { setNameList } = useNameListStore(s => s);
-    return <button onClick={() => setNameList(row.original.data["1500-1600"])}>{row.original.data["1500-1600"].length}</button>
+    <DepartmentSheetTrigger data={row.original.data["1500-1600"]} />
   }
 },
 {
@@ -62,8 +59,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
     </button>
   ),
   cell: ({ row }) => {
-    const { setNameList } = useNameListStore(s => s);
-    return <button onClick={() => setNameList(row.original.data["1600-1700"])}>{row.original.data["1600-1700"].length}</button>
+    <DepartmentSheetTrigger data={row.original.data["1600-1700"]} />
   }
 },
 {
@@ -75,8 +71,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
     </button>
   ),
   cell: ({ row }) => {
-    const { setNameList } = useNameListStore(s => s);
-    return <button onClick={() => setNameList(row.original.data["1700-1800"])}>{row.original.data["1700-1800"].length}</button>
+    <DepartmentSheetTrigger data={row.original.data["1700-1800"]} />
   }
 },
 {
@@ -88,8 +83,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
     </button>
   ),
   cell: ({ row }) => {
-    const { setNameList } = useNameListStore(s => s);
-    return <button onClick={() => setNameList(row.original.data["1800-1850"])}>{row.original.data["1800-1850"].length}</button>
+    <DepartmentSheetTrigger data={row.original.data["1800-1850"]} />
   }
 },
 {
@@ -101,8 +95,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
     </button>
   ),
   cell: ({ row }) => {
-    const { setNameList } = useNameListStore(s => s);
-    return <button onClick={() => setNameList(row.original.data["1850-2000"])}>{row.original.data["1850-2000"].length}</button>
+    <DepartmentSheetTrigger data={row.original.data["1850-2000"]} />
   }
 },
 {
@@ -114,8 +107,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
     </button>
   ),
   cell: ({ row }) => {
-    const { setNameList } = useNameListStore(s => s);
-    return <button onClick={() => setNameList(row.original.data["2000+"])}>{row.original.data["2000+"].length}</button>
+    <DepartmentSheetTrigger data={row.original.data["2000+"]} />
   }
 }
 

@@ -2,7 +2,7 @@
 
 import { ArrowUpDown } from "lucide-react";
 import { ColumnDef } from "@tanstack/react-table";
-import { useNameListStore } from "@/lib/store";
+import DepartmentSheetTrigger from "@/components/DepartmentSheetTrigger";
 
 interface TNameList { Name: string; Value: string; }
 export type TLeetTotalProblems = {
@@ -27,12 +27,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore((s) => s);
-      return (
-        <button onClick={() => setNameList(row.original.data["0-100"])}>
-          {row.original.data["0-100"].length}
-        </button>
-      );
+      <DepartmentSheetTrigger data={row.original.data["0-100"]} />
     },
   },
   {
@@ -45,12 +40,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore((s) => s);
-      return (
-        <button onClick={() => setNameList(row.original.data["101-200"])}>
-          {row.original.data["101-200"].length}
-        </button>
-      );
+      <DepartmentSheetTrigger data={row.original.data["101-200"]} />
     },
   },
   {
@@ -63,12 +53,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore((s) => s);
-      return (
-        <button onClick={() => setNameList(row.original.data["201-300"])}>
-          {row.original.data["201-300"].length}
-        </button>
-      );
+      <DepartmentSheetTrigger data={row.original.data["201-300"]} />
     },
   },
   {
@@ -81,12 +66,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore((s) => s);
-      return (
-        <button onClick={() => setNameList(row.original.data["301-400"])}>
-          {row.original.data["301-400"].length}
-        </button>
-      );
+      <DepartmentSheetTrigger data={row.original.data["301-400"]} />
     },
   },
   {
@@ -99,12 +79,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore((s) => s);
-      return (
-        <button onClick={() => setNameList(row.original.data["401-500"])}>
-          {row.original.data["401-500"].length}
-        </button>
-      );
+      <DepartmentSheetTrigger data={row.original.data["401-500"]} />
     },
   },
   {
@@ -117,12 +92,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore((s) => s);
-      return (
-        <button onClick={() => setNameList(row.original.data["501-600"])}>
-          {row.original.data["501-600"].length}
-        </button>
-      );
+      <DepartmentSheetTrigger data={row.original.data["501-600"]} />
     },
   },
   {
@@ -135,12 +105,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore((s) => s);
-      return (
-        <button onClick={() => setNameList(row.original.data["601-700"])}>
-          {row.original.data["601-700"].length}
-        </button>
-      );
+      <DepartmentSheetTrigger data={row.original.data["601-700"]} />
     },
   },
   {
@@ -153,12 +118,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore((s) => s);
-      return (
-        <button onClick={() => setNameList(row.original.data["701-800"])}>
-          {row.original.data["701-800"].length}
-        </button>
-      );
+      <DepartmentSheetTrigger data={row.original.data["701-800"]} />
     },
   },
   {
@@ -171,12 +131,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore((s) => s);
-      return (
-        <button onClick={() => setNameList(row.original.data["801-900"])}>
-          {row.original.data["801-900"].length}
-        </button>
-      );
+      <DepartmentSheetTrigger data={row.original.data["801-900"]} />
     },
   },
   {
@@ -189,12 +144,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore((s) => s);
-      return (
-        <button onClick={() => setNameList(row.original.data["901-1000"])}>
-          {row.original.data["901-1000"].length}
-        </button>
-      );
+      <DepartmentSheetTrigger data={row.original.data["901-1000"]} />
     },
   },
   {
@@ -207,12 +157,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
       </button>
     ),
     cell: ({ row }) => {
-      const { setNameList } = useNameListStore((s) => s);
-      return (
-        <button onClick={() => setNameList(row.original.data["1001+"])}>
-          {row.original.data["1001+"].length}
-        </button>
-      );
+      <DepartmentSheetTrigger data={row.original.data["1001+"]} />
     },
   },
 ];
