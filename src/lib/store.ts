@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface TNameList {
+export interface TNameList {
   Name: string;
   Value: string;
 }

@@ -1,8 +1,10 @@
 'use client'
 
-import { useNameListStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { ColumnDef } from "@tanstack/react-table";
+import { DataTable } from "./DataTable";
+import { ArrowUpDown } from "lucide-react";
+import { TNameList, useNameListStore } from "@/lib/store";
 
 
 export default function DepartmentSheet() {
@@ -16,24 +18,23 @@ export default function DepartmentSheet() {
       )}
     >
       <button onClick={() => setNameList([])} className="text-5xl sticky top-3 left-3 z-50">X</button>
-
-      <Table className="mt-10">
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w[100px]">Name</TableHead>
-            <TableHead>Value</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-        {
-          nameList.map((val, i) => 
-          <TableRow key={i}>
-            <TableCell className="font-medium">{val.Name}</TableCell>
-            <TableCell>{val.Value}</TableCell>
-          </TableRow>)
-        }
-        </TableBody>
-      </Table>
+      <div className="pt-10">
+        <DataTable columns={NameListColumn} data={nameList}/>
+      </div>
     </aside>
   );
 }
+
+export const NameListColumn: ColumnDef<TNameList>[] = [
+  { accessorKey: "Name", header: "Name" },
+  {
+    accessorKey: `data["0-1000"]`,
+    sortingFn: (a, b) => parseInt(a.original.Value) < parseInt(b.original.Value) ? 1 : -1,
+    header: ({ column }) => (
+      <button className="flex" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Value <ArrowUpDown className="ml-2 h-4 w-4" />
+      </button>
+    ),
+    cell: ({ row }) => <button onClick={() => {}}>{row.original.Value}</button>
+  },
+];

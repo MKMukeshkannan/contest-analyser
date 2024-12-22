@@ -8,9 +8,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "
 import DepartmentSheet from "@/components/DepartmentSheet";
 import { useNameListStore } from "@/lib/store";
 import Link from "next/link";
+import { ContestColumn, TContest } from "./ContestColumn";
+import { DataTable } from "@/components/DataTable";
 
 
-const DataValidator = z.array(z.object({ Name: z.string(), Department: z.string(), Rank: z.string(), 'ProblemsSolved\r': z.string() }));
+const DataValidator = z.array(z.object({ Name: z.string(), Department: z.string(), Rank: z.string(), 'ProblemsSolved\r': z.string(), Year: z.string() }));
 type TData = z.infer<typeof DataValidator>
 interface TNameList { Name: string; Value: string; }
 
@@ -36,7 +38,8 @@ export default function Leetcode() {
     if (file) fileReader.readAsText(file);
   };
 
-  const { all_department }  = get_aggregates(data);
+  const IIIrdYear  = get_aggregates(data, "III");
+  const IIrdYear  = get_aggregates(data, "II");
 
   return (
     <main className="font-mono min-h-screen w-full bg-sky-50 flex font-bold p-10 flex-col">
@@ -45,54 +48,28 @@ export default function Leetcode() {
       <input
         type="file"
         accept=".csv"
-        className="pt-10"
+        className="mt-10 w-fit"
         onChange={(e) => e.target.files && handleFileChosen(e.target.files[0])}
       />
 
       {data.length === 0 ? <h1 className="text-8xl pt-48">{err}</h1>: 
       <>
-      <h1 className="text-4xl pt-10">TOTAL PROBLEMS SOLVED</h1>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Department</TableHead>
-            <TableHead>abs</TableHead>
-            <TableHead>0</TableHead>
-            <TableHead>1</TableHead>
-            <TableHead>2</TableHead>
-            <TableHead>3</TableHead>
-            <TableHead>4</TableHead>
-          </TableRow>
-        </TableHeader>
+        <h1 className="text-4xl pt-10">IIIrd YEARS</h1>
+        <DataTable columns={ContestColumn} data={IIIrdYear} />
 
-        <TableBody>
-        {all_department.map((val,i) => 
-          <TableRow key={i}>
-            <TableCell className="font-medium">{val.department}</TableCell>
-            <TableCell><button onClick={() => setNameList(val.data['abs'])}>{val.data['abs'].length}</button></TableCell>
-            <TableCell><button onClick={() => setNameList(val.data["0"])}>{val.data["0"].length}</button></TableCell>
-            <TableCell><button onClick={() => setNameList(val.data["1"])}>{val.data["1"].length}</button></TableCell>
-            <TableCell><button onClick={() => setNameList(val.data["2"])}>{val.data["2"].length}</button></TableCell>
-            <TableCell><button onClick={() => setNameList(val.data["3"])}>{val.data["3"].length}</button></TableCell>
-            <TableCell><button onClick={() => setNameList(val.data["4"])}>{val.data["4"].length}</button></TableCell>
-          </TableRow>
-        )}
-        </TableBody>
-      </Table>
+        <h1 className="text-4xl pt-10">IIrd YEARS</h1>
+        <DataTable columns={ContestColumn} data={IIrdYear} />
       </> }
     </main>
   );
 }
 
-function get_aggregates(data: TData) {
-  const all_department: { 
-    department: string, 
-    data: { [key: string]: TNameList[]; } 
-  }[] = [];
-
+function get_aggregates(data: TData, year: string) {
+  const all_department: TContest[] = [];
 
   const departmentGroups: { [key: string]: { Name: string, ProblemsSolved: number, Rank: number}[] } = {};
   for (const item of data) {
+    if (item.Year !== `"${year}"`) continue;
     const { Department, Rank, "ProblemsSolved\r": ProblemsSolved } = item;
     const rank = parseInt(Rank, 10);
     const problems_solved = parseInt(ProblemsSolved, 10);
@@ -104,7 +81,7 @@ function get_aggregates(data: TData) {
 
 
   for (const [department, people] of Object.entries(departmentGroups)) {
-    const department_contest_solved: { department: string; data: {[key: string]: TNameList[];} } = {
+    const department_contest_solved: TContest = {
       department,
       data: {
       'abs': [], '0': [], '1': [], '2': [], '3': [], '4': []
@@ -123,6 +100,6 @@ function get_aggregates(data: TData) {
     all_department.push(department_contest_solved);
   }
 
-  return { all_department };
+  return all_department;
 };
 
