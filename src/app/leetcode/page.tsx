@@ -1,26 +1,25 @@
 "use client";
 
-import { cn, csvToArr } from "@/lib/utils";
+import { csvToArr } from "@/lib/utils";
 import { useState } from "react";
 import { z } from "zod";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
+import DepartmentSheet from "@/components/DepartmentSheet";
+import { useNameListStore } from "@/lib/store";
 
 
 const DataValidator = z.array(z.object({ Name: z.string(), Department: z.string(), Total: z.string(), Hard: z.string(), "Top\r": z.string(), ContestRating: z.string() }));
 type TData = z.infer<typeof DataValidator>
-
-interface TNameList {
-  Name: string;
-  Value: string;
-}
+interface TNameList { Name: string; Value: string; }
 
 export default function Leetcode() {
   let fileReader: FileReader;
   const [data, setData] = useState<TData>([]);
   const [err, setErr] = useState<String>("SELECT A CSV")
 
-  const [nameList, setNameList] = useState<TNameList[]>([]);
+  const { setNameList } = useNameListStore(s=>s);
+
 
   const handleFileChosen = (file: File) => {
     fileReader = new FileReader();
@@ -39,9 +38,7 @@ export default function Leetcode() {
 
   return (
     <main className="font-mono min-h-screen w-full bg-sky-50 flex font-bold p-10 flex-col">
-      <aside className={cn("w-full max-w-xl h-screen absolute top-0 right-0 border bg-white shadow-xl z-[999]", nameList.length === 0 && "-right-[2000px]")}>
-        {JSON.stringify(nameList)}
-      </aside>
+      <DepartmentSheet />
       <h1 className="text-4xl w-fit font-mono cursor-pointer">ANALYSIS</h1>
       <input
         type="file"
@@ -76,16 +73,16 @@ export default function Leetcode() {
           <TableRow key={i}>
             <TableCell className="font-medium">{val.department}</TableCell>
             <TableCell><button onClick={() => setNameList(val.data['0-100'])}>{val.data['0-100'].length}</button></TableCell>
-            <TableCell>{val.data["101-200"].length}</TableCell>
-            <TableCell>{val.data["201-300"].length}</TableCell>
-            <TableCell>{val.data["301-400"].length}</TableCell>
-            <TableCell>{val.data["401-500"].length}</TableCell>
-            <TableCell>{val.data["501-600"].length}</TableCell>
-            <TableCell>{val.data["601-700"].length}</TableCell>
-            <TableCell>{val.data["701-800"].length}</TableCell>
-            <TableCell>{val.data["801-900"].length}</TableCell>
-            <TableCell>{val.data["901-1000"].length}</TableCell>
-            <TableCell>{val.data["1001+"].length}</TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["101-200"])}>{val.data["101-200"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["201-300"])}>{val.data["201-300"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["301-400"])}>{val.data["301-400"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["401-500"])}>{val.data["401-500"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["501-600"])}>{val.data["501-600"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["601-700"])}>{val.data["601-700"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["701-800"])}>{val.data["701-800"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["801-900"])}>{val.data["801-900"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["901-1000"])}>{val.data["901-1000"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["1001+"])}>{val.data["1001+"].length}</button></TableCell>
           </TableRow>
         )}
         </TableBody>
@@ -114,17 +111,17 @@ export default function Leetcode() {
         {hard_solved.map((val,i) => 
           <TableRow key={i}>
             <TableCell className="font-medium">{val.department}</TableCell>
-            <TableCell>{val.data["0-100"].length}</TableCell>
-            <TableCell>{val.data["101-200"].length}</TableCell>
-            <TableCell>{val.data["201-300"].length}</TableCell>
-            <TableCell>{val.data["301-400"].length}</TableCell>
-            <TableCell>{val.data["401-500"].length}</TableCell>
-            <TableCell>{val.data["501-600"].length}</TableCell>
-            <TableCell>{val.data["601-700"].length}</TableCell>
-            <TableCell>{val.data["701-800"].length}</TableCell>
-            <TableCell>{val.data["801-900"].length}</TableCell>
-            <TableCell>{val.data["901-1000"].length}</TableCell>
-            <TableCell>{val.data["1001+"].length}</TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["0-100"])}>{val.data["0-100"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["101-200"])}>{val.data["101-200"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["201-300"])}>{val.data["201-300"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["301-400"])}>{val.data["301-400"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["401-500"])}>{val.data["401-500"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["501-600"])}>{val.data["501-600"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["601-700"])}>{val.data["601-700"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["701-800"])}>{val.data["701-800"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["801-900"])}>{val.data["801-900"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["901-1000"])}>{val.data["901-1000"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["1001+"])}>{val.data["1001+"].length}</button></TableCell>
           </TableRow>
         )}
         </TableBody>
@@ -150,14 +147,14 @@ export default function Leetcode() {
         {contest_rating.map((val,i) => 
           <TableRow key={i}>
             <TableCell className="font-medium">{val.department}</TableCell>
-            <TableCell>{val.data["0-1000"].length}</TableCell>
-            <TableCell>{val.data["1000-1500"].length}</TableCell>
-            <TableCell>{val.data["1500-1600"].length}</TableCell>
-            <TableCell>{val.data["1600-1700"].length}</TableCell>
-            <TableCell>{val.data["1700-1800"].length}</TableCell>
-            <TableCell>{val.data["1800-1850"].length}</TableCell>
-            <TableCell>{val.data["1850-2000"].length}</TableCell>
-            <TableCell>{val.data["2000+"].length}</TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["0-1000"])}>{val.data["0-1000"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["1000-1500"])}>{val.data["1000-1500"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["1500-1600"])}>{val.data["1500-1600"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["1600-1700"])}>{val.data["1600-1700"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["1700-1800"])}>{val.data["1700-1800"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["1800-1850"])}>{val.data["1800-1850"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["1850-2000"])}>{val.data["1850-2000"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["2000+"])}>{val.data["2000+"].length}</button></TableCell>
           </TableRow>
         )}
         </TableBody>
@@ -186,17 +183,17 @@ export default function Leetcode() {
         {top.map((val,i) => 
           <TableRow key={i}>
             <TableCell className="font-medium">{val.department}</TableCell>
-            <TableCell>{val.data["0-10"].length}</TableCell>
-            <TableCell>{val.data["10-20"].length}</TableCell>
-            <TableCell>{val.data["20-30"].length}</TableCell>
-            <TableCell>{val.data["30-40"].length}</TableCell>
-            <TableCell>{val.data["40-50"].length}</TableCell>
-            <TableCell>{val.data["50-60"].length}</TableCell>
-            <TableCell>{val.data["60-70"].length}</TableCell>
-            <TableCell>{val.data["70-80"].length}</TableCell>
-            <TableCell>{val.data["80-90"].length}</TableCell>
-            <TableCell>{val.data["90-100"].length}</TableCell>
-            <TableCell>{val.data["100"].length}</TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["0-10"])}>{val.data["0-10"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["10-20"])}>{val.data["10-20"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["20-30"])}>{val.data["20-30"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["30-40"])}>{val.data["30-40"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["40-50"])}>{val.data["40-50"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["50-60"])}>{val.data["50-60"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["60-70"])}>{val.data["60-70"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["70-80"])}>{val.data["70-80"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["80-90"])}>{val.data["80-90"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["90-100"])}>{val.data["90-100"].length}</button></TableCell>
+            <TableCell><button onClick={() => setNameList(val.data["100"])}>{val.data["100"].length}</button></TableCell>
           </TableRow>
         )}
         </TableBody>
@@ -285,7 +282,7 @@ function get_aggregates(data: TData) {
       else if (person.Total <= 1000) department_total.data['901-1000'].push({ "Name": person.Name, "Value": person.Total.toString() });
       else department_total.data['1001+'].push({ "Name": person.Name, "Value": person.Total.toString() });
 
-      if (person.Hard <= 100) department_hard.data['0-100']
+      if (person.Hard <= 100) department_hard.data['0-100'].push({ Name: person.Name, "Value": person.Hard.toString() })
       else if (person.Hard <= 200) department_hard.data['101-200'].push({ Name: person.Name, "Value": person.Hard.toString() });
       else if (person.Hard <= 300) department_hard.data['201-300'].push({ Name: person.Name, "Value": person.Hard.toString() });
       else if (person.Hard <= 400) department_hard.data['301-400'].push({ Name: person.Name, "Value": person.Hard.toString() });
