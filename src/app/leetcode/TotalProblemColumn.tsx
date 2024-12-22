@@ -26,9 +26,8 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
         0-100 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["0-100"]} />
-    },
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["0-100"]} />
+,
   },
   {
     accessorKey: `data["101-200"]`,
@@ -39,9 +38,8 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
         101-200 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["101-200"]} />
-    },
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["101-200"]} />
+,
   },
   {
     accessorKey: `data["201-300"]`,
@@ -52,9 +50,8 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
         201-300 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["201-300"]} />
-    },
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["201-300"]} />
+,
   },
   {
     accessorKey: `data["301-400"]`,
@@ -65,9 +62,8 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
         301-400 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["301-400"]} />
-    },
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["301-400"]} />
+,
   },
   {
     accessorKey: `data["401-500"]`,
@@ -78,9 +74,8 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
         401-500 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["401-500"]} />
-    },
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["401-500"]} />
+,
   },
   {
     accessorKey: `data["501-600"]`,
@@ -91,9 +86,8 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
         501-600 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["501-600"]} />
-    },
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["501-600"]} />
+,
   },
   {
     accessorKey: `data["601-700"]`,
@@ -104,9 +98,8 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
         601-700 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["601-700"]} />
-    },
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["601-700"]} />
+,
   },
   {
     accessorKey: `data["701-800"]`,
@@ -117,9 +110,8 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
         701-800 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["701-800"]} />
-    },
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["701-800"]} />
+,
   },
   {
     accessorKey: `data["801-900"]`,
@@ -130,9 +122,8 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
         801-900 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["801-900"]} />
-    },
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["801-900"]} />
+,
   },
   {
     accessorKey: `data["901-1000"]`,
@@ -143,9 +134,8 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
         901-1000 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["901-1000"]} />
-    },
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["901-1000"]} />
+,
   },
   {
     accessorKey: `data["1001+"]`,
@@ -156,8 +146,7 @@ export const LeetTotalProblemColumn: ColumnDef<TLeetTotalProblems>[] = [
         1001+ <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["1001+"]} />
-    },
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["1001+"]} />
+,
   },
 ];

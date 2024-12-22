@@ -22,9 +22,8 @@ export const TopColumn: ColumnDef<TTop>[] = [
         0-10 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["0-10"]} />
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["0-10"]} />
+
   },
   {
     accessorKey: `data["10-20"]`,
@@ -34,9 +33,8 @@ export const TopColumn: ColumnDef<TTop>[] = [
         10-20 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["10-20"]} />
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["10-20"]} />
+
   },
   {
     accessorKey: `data["20-30"]`,
@@ -46,9 +44,8 @@ export const TopColumn: ColumnDef<TTop>[] = [
         20-30 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["20-30"]} />
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["20-30"]} />
+
   },
   {
     accessorKey: `data["30-40"]`,
@@ -58,9 +55,8 @@ export const TopColumn: ColumnDef<TTop>[] = [
         30-40 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["30-40"]} />
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["30-40"]} />
+
   },
   {
     accessorKey: `data["40-50"]`,
@@ -70,9 +66,8 @@ export const TopColumn: ColumnDef<TTop>[] = [
         40-50 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["40-50"]} />
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["40-50"]} />
+
   },
   {
     accessorKey: `data["50-60"]`,
@@ -82,9 +77,8 @@ export const TopColumn: ColumnDef<TTop>[] = [
         50-60 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["50-60"]} />
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["50-60"]} />
+
   },
   {
     accessorKey: `data["60-70"]`,
@@ -94,9 +88,8 @@ export const TopColumn: ColumnDef<TTop>[] = [
         60-70 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["60-70"]} />
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["60-70"]} />
+
   },
   {
     accessorKey: `data["70-80"]`,
@@ -106,9 +99,8 @@ export const TopColumn: ColumnDef<TTop>[] = [
         70-80 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["70-80"]} />
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["70-80"]} />
+
   },
   {
     accessorKey: `data["80-90"]`,
@@ -118,9 +110,8 @@ export const TopColumn: ColumnDef<TTop>[] = [
         80-90 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["80-90"]} />
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["80-90"]} />
+
   },
   {
     accessorKey: `data["90-100"]`,
@@ -130,9 +121,8 @@ export const TopColumn: ColumnDef<TTop>[] = [
         90-100 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["90-100"]} />
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["90-100"]} />
+
   },
   {
     accessorKey: `data["100"]`,
@@ -142,9 +132,8 @@ export const TopColumn: ColumnDef<TTop>[] = [
         100 <ArrowUpDown className="ml-2 h-4 w-4" />
       </button>
     ),
-    cell: ({ row }) => {
-      <DepartmentSheetTrigger data={row.original.data["100"]} />
-    }
+    cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["100"]} />
+
   }
 ];
 

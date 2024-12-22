@@ -22,9 +22,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
       0-1000 <ArrowUpDown className="ml-2 h-4 w-4" />
     </button>
   ),
-  cell: ({ row }) => {
-    <DepartmentSheetTrigger data={row.original.data["0-1000"]} />
-  }
+  cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["0-1000"]} />
 },
 {
   accessorKey: `data["1000-1500"]`,
@@ -34,9 +32,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
       1000-1500 <ArrowUpDown className="ml-2 h-4 w-4" />
     </button>
   ),
-  cell: ({ row }) => {
-    <DepartmentSheetTrigger data={row.original.data["1000-1500"]} />
-  }
+  cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["1000-1500"]} />,
 },
 {
   accessorKey: `data["1500-1600"]`,
@@ -46,9 +42,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
       1500-1600 <ArrowUpDown className="ml-2 h-4 w-4" />
     </button>
   ),
-  cell: ({ row }) => {
-    <DepartmentSheetTrigger data={row.original.data["1500-1600"]} />
-  }
+  cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["1500-1600"]} />,
 },
 {
   accessorKey: `data["1600-1700"]`,
@@ -58,9 +52,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
       1600-1700 <ArrowUpDown className="ml-2 h-4 w-4" />
     </button>
   ),
-  cell: ({ row }) => {
-    <DepartmentSheetTrigger data={row.original.data["1600-1700"]} />
-  }
+  cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["1600-1700"]} />,
 },
 {
   accessorKey: `data["1700-1800"]`,
@@ -70,9 +62,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
       1700-1800 <ArrowUpDown className="ml-2 h-4 w-4" />
     </button>
   ),
-  cell: ({ row }) => {
-    <DepartmentSheetTrigger data={row.original.data["1700-1800"]} />
-  }
+  cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["1700-1800"]} />,
 },
 {
   accessorKey: `data["1800-1850"]`,
@@ -82,9 +72,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
       1800-1850 <ArrowUpDown className="ml-2 h-4 w-4" />
     </button>
   ),
-  cell: ({ row }) => {
-    <DepartmentSheetTrigger data={row.original.data["1800-1850"]} />
-  }
+  cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["1800-1850"]} />,
 },
 {
   accessorKey: `data["1850-2000"]`,
@@ -94,9 +82,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
       1850-2000 <ArrowUpDown className="ml-2 h-4 w-4" />
     </button>
   ),
-  cell: ({ row }) => {
-    <DepartmentSheetTrigger data={row.original.data["1850-2000"]} />
-  }
+  cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["1850-2000"]} />,
 },
 {
   accessorKey: `data["2000+"]`,
@@ -106,9 +92,7 @@ export const ContestColumn: ColumnDef<TContest>[] = [
       2000+ <ArrowUpDown className="ml-2 h-4 w-4" />
     </button>
   ),
-  cell: ({ row }) => {
-    <DepartmentSheetTrigger data={row.original.data["2000+"]} />
-  }
+  cell: ({ row }) => <DepartmentSheetTrigger data={row.original.data["2000+"]} />,
 }
 
 ];
