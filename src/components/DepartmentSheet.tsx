@@ -26,8 +26,8 @@ export default function DepartmentSheet() {
         </TableHeader>
         <TableBody>
         {
-          nameList.map(val => 
-          <TableRow>
+          nameList.map((val, i) => 
+          <TableRow key={i}>
             <TableCell className="font-medium">{val.Name}</TableCell>
             <TableCell>{val.Value}</TableCell>
           </TableRow>)

@@ -32,7 +32,7 @@ export default function Leetcode() {
 
   return (
     <main className="font-mono min-h-screen w-full bg-sky-50 flex font-bold p-10 flex-col">
-      <h1 onContextMenu={() => console.log("lkjd")} className="text-4xl w-fit font-mono cursor-pointer">ANALYSIS</h1>
+      <a href="/" className="text-4xl w-fit font-mono cursor-pointer">ANALYSIS</a>
       <input
         type="file"
         accept=".csv"
